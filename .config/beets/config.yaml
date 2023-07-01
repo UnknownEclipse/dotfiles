@@ -1,0 +1,12 @@
+library: /media/music/library.db
+directory: /media/music
+import:
+    move: yes
+plugins: fetchart embedart random inline missing
+embedart:
+  ifempty: yes
+paths:
+    default: "$albumartist/$albumartist - $album ($year) [$format%if{$bitdepth, - $bitdepth} - $samplerate]/$track. $title"
+fetchart:
+    sources: itunes fanarttv
+    fanarttv_key: ea623312411ecf5c8fcb40702032a73f
