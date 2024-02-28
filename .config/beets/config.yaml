@@ -1,12 +1,18 @@
-library: /media/music/library.db
-directory: /media/music
+directory: "~/Beets"
+library: "~/Beets/library.db"
+plugins: convert embedart fetchart inline missing
 import:
     move: yes
-plugins: fetchart embedart random inline missing
-embedart:
-  ifempty: yes
 paths:
-    default: "$albumartist/$albumartist - $album ($year) [$format%if{$bitdepth, - $bitdepth} - $samplerate]/$track. $title"
+    default: $albumartist/$albumartist - $album ($year) [$format%if{$bitdepth, - $bitdepth} - $samplerate]/$track. $title
+embedart:
+    maxwidth: 700
+    ifempty: yes
 fetchart:
-    sources: itunes fanarttv
-    fanarttv_key: ea623312411ecf5c8fcb40702032a73f
+    high_resolution: yes
+convert:
+    format: opus
+    aac:
+        command: ffmpeg -i $source -y -vn -acodec aac_at -aq 1 $dest
+        extension: m4a
+    copy_album_art: yes
