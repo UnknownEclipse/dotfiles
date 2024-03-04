@@ -1,6 +1,7 @@
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.pyenv/bin
+fish_config theme choose Nord
 
 brew shellenv | source
 pyenv init - | source
