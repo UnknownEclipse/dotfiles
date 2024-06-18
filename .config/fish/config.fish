@@ -1,9 +1,14 @@
+set -l os (uname)
+
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.pyenv/bin
 fish_config theme choose Nord
 
-brew shellenv | source
+if test "$os" = Darwin
+    brew shellenv | source
+end
+
 pyenv init - | source
 
 if status is-interactive
@@ -13,7 +18,7 @@ if status is-interactive
 end
 
 set -Ux LS_COLORS $(vivid generate nord)
-set -Ux BAT_THEME "Nord"
+set -Ux BAT_THEME Nord
 set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p '"
 
 alias yt-audio='yt-dlp -x --audio-quality best'
